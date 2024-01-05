@@ -1,0 +1,96 @@
+/*Mobile First Style*/
+html,
+body,
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.login-page,
+.login,
+.field-wrapper,
+.login form,
+.login form .button-wrapper span {
+  width          : 100%;
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: center;
+}
+
+.login-page {
+  height: 100vh;
+}
+
+.login {
+  height             : auto;
+  /* background-color: bisque; */
+}
+
+.login h3 {
+  font-size: 2rem;
+  width    : 100%;
+  padding  : 0 1rem;
+}
+
+.login form {
+  height : auto;
+  padding: 1rem;
+
+  justify-content: space-between;
+}
+
+.login form .field-wrapper {
+  align-items: flex-start;
+  margin     : 0.5rem 0;
+}
+
+.login form .field-wrapper * {
+  width: 100%;
+}
+
+.login form .field-wrapper label {
+  font-size: 0.9rem;
+  padding  : 0.2rem 0
+}
+
+.login form .field-wrapper input {
+  border       : 2px solid #888888;
+  border-radius: 0.3rem;
+  height       : 3rem;
+  font-size    : 1rem;
+  padding: 0 0.3rem
+}
+
+.login form .sign-up-request  {
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.login form .sign-up-request span {
+  text-align: right;
+  margin-right: 0.25rem;
+}
+
+.login form .sign-up-request a {
+  text-align: left;
+  margin-left: 0.25rem;
+}
+
+.login form .button-wrapper button {
+  background-color: #0085FC;
+  height          : 3rem;
+  color           : white;
+  border          : none;
+  border-radius   : 0.3rem;
+}
+
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {}
