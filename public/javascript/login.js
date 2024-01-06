@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   // Traditional Javascript function
   function doSomething() {
     // Using the this keyword here would have an issue
+    return "[doSomething] Called!";
   }
 
   // Javascript arrow function
@@ -16,7 +17,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
   submitButton.addEventListener('click', (event) => {
     event.preventDefault();// Stops the form default behaviour
     const car = new Car(usernameField.value, passwordField.value);
-    car.submitDetails();
+    // car.submitDetails();
+
+    car.executeMethods(doSomething);
   });
   
 });
@@ -33,6 +36,10 @@ class Car {
     console.log("Submitting details...");
     console.log("Name: ", this.username);
     console.log("Age: ", this.password);
+  }
+
+  executeMethods = (method) => {
+    console.log(method);
   }
 }
 
