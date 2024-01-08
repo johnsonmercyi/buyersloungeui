@@ -8,6 +8,7 @@ const PersonObject = {
     this.name = name;
     this.age = age;
     this.dob = dob;
+    return this;
   },
   setName: function(name) {
     this.name = name;
@@ -31,6 +32,12 @@ const PersonObject = {
     return `[name: ${this.name}, age: ${this.age}, dob: ${this.dob}]`;
   }
 };
+
+//check this ->
+//PersonObject.initializePerson("ikenna", 29, util.date);
+//console.log(PersonObject.personDetails());
+const p = PersonObject.initializePerson("ikenna", 29, util.date);
+console.log(p.personDetails());
 
 export default PersonObject;
 
