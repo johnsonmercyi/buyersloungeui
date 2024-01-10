@@ -1,14 +1,12 @@
 class Tclass {
 
-    constructor(productName, tType, productPrice, noBought, noSold){
+    constructor(productName, tType, amount){
         //Global Instance Variables
         this.productName = productName;
         this.tType = tType;
-        this.productStock = 700;
-        this.productPrice = productPrice;
-        this.noBought = noBought;
-        this.noSold = noSold;
+        this.amount = amount;     
     }
+
     //Getters and Setters
     setProductName(productName){
         this.productName = productName;
@@ -20,140 +18,89 @@ class Tclass {
         this.tType = tType;
     }
     getTtype(){
-        return tType;
+        return this.tType;
     }
-    setProductStock(productStock){
-        this.productStock = productStock;
+    setAmount(amount){
+        this.amount = amount;
     }
-    getProductStock(){
-        return productStock;
+    getAmount(){
+        return this.amount;
     }
-    setProductPrice(productPrice){
-        this.productPrice = productPrice;
-    }
-    getProductPrice(){
-        return this.productPrice;
-    }
-    setNoBought(noBought){
-        this.noBought = noBought;
-    }
-    getNoBought(){
-        return noBought;
-    }
-    setNoSold(noSold){
-        this.noSold = noSold;
-    }
-    getNoSold(){
-        return noSold;
-    }
+   
     toString(){
-        return `[product-name: ${this.productName}, transaction-type: ${this.tType}, product-price: ${this.productPrice}, number-bought: ${this.noBought}, number-sold: ${this.noSold}]`;
+        return `[product-name: ${this.productName}, transaction-type: ${this.tType}, amount: ${this.amount}]`;
     }
-
     
 }
-//Database class
-class Database {
-        
-    constructor(){
-        this.db = [];
-        this.populateDb();
-        
-    }
 
-    populateDb(){           
-        this.db.push(new Tclass("Rice", "Expenses",50.00, 40, 0));
-        this.db.push(new Tclass("Beans", "Sales",100.00, 0, 10));
-        this.db.push(new Tclass("tooth-brush", "Expenses",30, 50, 0));
-        this.db.push(new Tclass("Drugs", "Sales",90.00, 40, 20));
-    }
-    getdb(){
+const Database = {
+        
+    db: [],
+
+    populateDb: function(){           
+        this.db.push(new Tclass("Rice", "Expenses",50.00));
+        this.db.push(new Tclass("Beans", "Sales",100.00));
+        this.db.push(new Tclass("tooth-brush", "Expenses",30));
+        this.db.push(new Tclass("Drugs", "Sales",90.00));
+    },
+
+    getdb: function(){
         return this.db;
-    }
-    filterSales(){
+    },
+
+    filterSales: function(){
         let sales = [];
-        for (let index = 0; index < this.db.length; index++) {
-            //const element = this.db[index];
+        for (let index = 0; index < this.getdb().length; index++) {
             if(this.db[index] != null){
-                if(this.db[index].getTtype === "Sales"){
+                if(this.db[index].getTtype() === "Sales"){
                     sales.push(this.db[index]);
                 }
             }  
         }
         return sales;
-    }
-    filterExpense(){
+    },
+
+    filterExpense: function(){
         let expenses = [];
-        for (let index = 0; index < this.db.length; index++) {
-            //const element = this.db[index];
+        for (let index = 0; index < this.getdb().length; index++) {
             if(this.db[index] != null){
-                if(this.db[index].getTtype === "Sales"){
+                if(this.db[index].getTtype() === "Expenses"){
                     expenses.push(this.db[index]);
                 }
             }  
         }
         return expenses;
-    }
-    cashAtHand(){
+    },
+    cashAtHand: function(){
         let expenseAmt = 0.0;
         let salesAmt = 0.0;
-        for (const expense of filterExpense()) {
-            expenseAmt += expense.productPrice * expense.noBought;
+        for (const expense of this.filterExpense()) {
+            expenseAmt += expense.amount;
         }
-        for (const sale of filterSales()) {
-            salesAmt += sale.productPrice * sale.noSold;
+        for (const sale of this.filterSales()) {
+            salesAmt += sale.amount;
         }
         return salesAmt - expenseAmt;
-    }
-    save(tA){
+    },
+    save: function(tA){
         if(tA != null){
-            if(tA.gettTtype === "Expenses"){
-                tA.productStock += tA.noBought;
-                this.db.push(tA);
-                return tA;
-            }else if (tA.tType === "Sales"){
-                if(tA.productStock > tA.noSold){
-                    tA.productStock -= tA.noSold
-                    this.db.push(tA);
-                    return tA;
-                }else{
-                    console.log("Stock is remaining ", tA.productStock);
-                }
-            }
+            this.db.push(tA);
+            return tA;
         }
     }
-}
-//Main class
-class Main {
-    constructor(){
-        this.database = new Database();
-        this.transaction = new Tclass();
-        this.transaction.setTtype("Sales");
-        this.transaction.setProductName("Cloth");
-        this.transaction.setNoBought(0);
-        this.transaction.setNoSold(10);
-        this.transaction.setProductPrice(100);
-    }
-    printDetails(){
-        console.log(this.transaction.toString());
-    }
-    filterSales(){
-        console.log(this.database.filterSales());
-    }
-    filterExpense(){
-        console.log(this.database.filterExpense());
-    }
-    cashAtHand(){
-        console.log(this.database.cashAtHand());
-    }
-    save(tA){
-        console.log(this.database.save());
-    }
-}
+} 
 
-const main = new Main();
-main.printDetails();
-main.filterExpense();
-main.filterSales();
+
+const go = new Tclass();
+Database.populateDb();
+go.setTtype("Sales");
+go.setProductName("Cloth");
+go.setAmount(80);
+console.log(Database.save(go));
+console.log(Database.filterExpense());
+console.log(Database.filterSales());
+console.log(Database.cashAtHand());
+
+
 
 
