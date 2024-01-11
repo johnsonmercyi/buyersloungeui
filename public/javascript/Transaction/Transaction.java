@@ -1,6 +1,7 @@
 package Transaction;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Transaction {
     private TransactionObj tObj;
@@ -68,28 +69,38 @@ public class Transaction {
     
     //filterSales
     public ArrayList<TransactionObj> filterSales(){
-        ArrayList sales = new ArrayList<>();
-        for (TransactionObj sale : getdB()) {
-            if ((sale != null)) {
-                if (sale.transactionType.equals("Sales")) {
-                    sales.add(sale);
-                }
-            }
-        }
-        return sales;
+        // ArrayList sales = new ArrayList<>();
+        // for (TransactionObj sale : getdB()) {
+        //     if ((sale != null)) {
+        //         if (sale.transactionType.equals("Sales")) {
+        //             sales.add(sale);
+        //         }
+        //     }
+        // }
+        // return sales;
+
+            //using Java Stream
+        return getdB().stream()
+            .filter(sale -> sale.transactionType.equals("Sales"))
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 
     //filterExpense
     public ArrayList<TransactionObj> filterExpense(){
-        ArrayList expenses = new ArrayList<>();
-        for (TransactionObj expense : getdB()) {
-            if ((expense != null)) {
-                if (expense.transactionType.equals("Expenses")) {
-                    expenses.add(expense);
-                }
-            }
-        }
-        return expenses;
+        // ArrayList expenses = new ArrayList<>();
+        // for (TransactionObj expense : getdB()) {
+        //     if ((expense != null)) {
+        //         if (expense.transactionType.equals("Expenses")) {
+        //             expenses.add(expense);
+        //         }
+        //     }
+        // }
+        // return expenses;
+            
+            //using Java Stream
+        return getdB().stream()
+            .filter(sale -> sale.transactionType.equals("Expenses"))
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 
     //Get Cash at hand
