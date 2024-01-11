@@ -42,10 +42,8 @@ const Tclass = {
     
 }
 
-const Database = {
-        
+const Database = {       
     db: [],
-
     populateDb: function(){           
         this.db.push(Tclass.initializeTransaction("Rice", "Expenses",50.00));
         this.db.push(Tclass.initializeTransaction("Beans", "Sales",100.00));
