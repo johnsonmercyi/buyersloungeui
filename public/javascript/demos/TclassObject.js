@@ -1,14 +1,7 @@
-const Tclass = {
-    productName: undefined,
-    tType: undefined,
-    amount: undefined,  
+const TclassObj = {
 
-    initializeTransaction: function(productName, tType, amount){   
-        const instance = Object.create(this);
-        instance.productName = productName;
-        instance.tType = tType;
-        instance.amount = amount;
-        return instance;
+    transaction: function(productName, tType, amount){ 
+        return {productName, tType, amount};
     },
 
     //Getters and Setters
@@ -38,78 +31,71 @@ const Tclass = {
    
     toString: function(){
         return `[product-name: ${this.productName}, transaction-type: ${this.tType}, amount: ${this.amount}]`;
-    }
+    },
     
+    db: [],
+    populateDb: function() {
+      // this.db.push();
+      this.db.push(this.transaction("Rice", "Expenses", 50.00));
+      this.db.push(this.transaction("Beans", "Sales", 100.00));
+      this.db.push(this.transaction("tooth-brush", "Expenses", 30));
+      this.db.push(this.transaction("Drugs", "Sales", 90.00));
+    },
+
+    getdb: function () {
+      return this.db;
+    },
+
+    filterSales: function () {
+      let sales = [];
+      for (let index = 0; index < this.getdb().length; index++) {
+        if (this.db[index] != null) {
+          if (this.db[index].tType === "Sales") {
+            sales.push(this.db[index]);
+          }
+        }
+      }
+      return sales;
+    },
+
+    filterExpense: function () {
+      let expenses = [];
+      for (let index = 0; index < this.getdb().length; index++) {
+        if (this.db[index] != null) {
+          if (this.db[index].tType === "Expenses") {
+            expenses.push(this.db[index]);
+          }
+        }
+      }
+      return expenses;
+    },
+
+    cashAtHand: function () {
+      let expenseAmt = 0.0;
+      let salesAmt = 0.0;
+      for (const expense of this.filterExpense()) {
+        expenseAmt += expense.amount;
+      }
+      for (const sale of this.filterSales()) {
+        salesAmt += sale.amount;
+      }
+      return salesAmt - expenseAmt;
+    },
+
+    save: function (tA) {
+      if (tA != null) {
+        this.db.push(tA);
+        return tA;
+      }
+    }
 }
 
-const Database = {       
-    db: [],
-    populateDb: function(){           
-        this.db.push(Tclass.initializeTransaction("Rice", "Expenses",50.00));
-        this.db.push(Tclass.initializeTransaction("Beans", "Sales",100.00));
-        this.db.push(Tclass.initializeTransaction("tooth-brush", "Expenses",30));
-        this.db.push(Tclass.initializeTransaction("Drugs", "Sales",90.00));
-    },
 
-    getdb: function(){
-        return this.db;
-    },
-
-    filterSales: function(){
-        let sales = [];
-        for (let index = 0; index < this.getdb().length; index++) {
-            if(this.db[index] != null){
-                if(this.db[index].tType === "Sales"){
-                    sales.push(this.db[index]);
-                }
-            }  
-        }
-        return sales;
-    },
-
-    filterExpense: function(){
-        let expenses = [];
-        for (let index = 0; index < this.getdb().length; index++) {
-            if(this.db[index] != null){
-                if(this.db[index].tType === "Expenses"){
-                    expenses.push(this.db[index]);
-                }
-            }  
-        }
-        return expenses;
-    },
-
-    cashAtHand: function(){
-        let expenseAmt = 0.0;
-        let salesAmt = 0.0;
-        for (const expense of this.filterExpense()) {
-            expenseAmt += expense.amount;
-        }
-        for (const sale of this.filterSales()) {
-            salesAmt += sale.amount;
-        }
-        return salesAmt - expenseAmt;
-    },
-
-    save: function(tA){
-        if(tA != null){
-            this.db.push(tA);
-            return tA;
-        }
-    }
-} 
-
-
-const go = Tclass.initializeTransaction("Initial Product", "Initial Type", 0);
-Database.populateDb();
-go.setTtype("Sales");
-go.setProductName("Cloth");
-go.setAmount(80);
-console.log(Database.save(go));
-console.log(Database.filterExpense());
-console.log(Database.filterSales());
-console.log(Database.cashAtHand());
-
+TclassObj.populateDb();
+console.log(TclassObj.save(TclassObj.transaction("Cloth", "Sales", 80)));
+console.log(TclassObj.filterExpense());
+console.log(TclassObj.filterSales());
+console.log(TclassObj.cashAtHand());
 
 
 

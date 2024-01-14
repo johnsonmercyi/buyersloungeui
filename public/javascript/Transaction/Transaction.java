@@ -69,16 +69,6 @@ public class Transaction {
     
     //filterSales
     public ArrayList<TransactionObj> filterSales(){
-        // ArrayList sales = new ArrayList<>();
-        // for (TransactionObj sale : getdB()) {
-        //     if ((sale != null)) {
-        //         if (sale.transactionType.equals("Sales")) {
-        //             sales.add(sale);
-        //         }
-        //     }
-        // }
-        // return sales;
-
             //using Java Stream
         return getdB().stream()
             .filter(sale -> sale.transactionType.equals("Sales"))
@@ -87,16 +77,6 @@ public class Transaction {
 
     //filterExpense
     public ArrayList<TransactionObj> filterExpense(){
-        // ArrayList expenses = new ArrayList<>();
-        // for (TransactionObj expense : getdB()) {
-        //     if ((expense != null)) {
-        //         if (expense.transactionType.equals("Expenses")) {
-        //             expenses.add(expense);
-        //         }
-        //     }
-        // }
-        // return expenses;
-            
             //using Java Stream
         return getdB().stream()
             .filter(sale -> sale.transactionType.equals("Expenses"))
@@ -137,7 +117,6 @@ public class Transaction {
         System.out.println(t.filterSales());
         System.out.println("\nCASH AT HAND");
         System.out.println(t.cashAtHand());
-        
     }
   
 }
