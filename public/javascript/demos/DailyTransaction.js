@@ -35,9 +35,7 @@ const DailyTransaction = {
 
   cashAtHand: function () {
     let saleAmt = this.sales().totalSales
-    console.log("sale Amt: ", saleAmt);
     let expenseAmt = this.expenses().totalExpenses;
-    console.log("Expense Amt: ", expenseAmt);
     return saleAmt - expenseAmt;
   }
 }
