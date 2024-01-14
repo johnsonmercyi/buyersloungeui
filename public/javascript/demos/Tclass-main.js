@@ -33,22 +33,25 @@ class Tclass {
     
 }
 
-const Database = {
-        
-    db: [],
+class Database {
 
-    populateDb: function(){           
+    constructor(){
+       this.db = [];
+       this.populateDb();
+    }
+         
+    populateDb(){           
         this.db.push(new Tclass("Rice", "Expenses",50.00));
         this.db.push(new Tclass("Beans", "Sales",100.00));
         this.db.push(new Tclass("tooth-brush", "Expenses",30));
         this.db.push(new Tclass("Drugs", "Sales",90.00));
-    },
+    }
 
-    getdb: function(){
+    getdb(){
         return this.db;
-    },
+    }
 
-    filterSales: function(){
+    filterSales(){
         let sales = [];
         for (let index = 0; index < this.getdb().length; index++) {
             if(this.db[index] != null){
@@ -58,9 +61,9 @@ const Database = {
             }  
         }
         return sales;
-    },
+    }
 
-    filterExpense: function(){
+    filterExpense(){
         let expenses = [];
         for (let index = 0; index < this.getdb().length; index++) {
             if(this.db[index] != null){
@@ -70,8 +73,8 @@ const Database = {
             }  
         }
         return expenses;
-    },
-    cashAtHand: function(){
+    }
+    cashAtHand(){
         let expenseAmt = 0.0;
         let salesAmt = 0.0;
         for (const expense of this.filterExpense()) {
@@ -81,8 +84,8 @@ const Database = {
             salesAmt += sale.amount;
         }
         return salesAmt - expenseAmt;
-    },
-    save: function(tA){
+    }
+    save(tA){
         if(tA != null){
             this.db.push(tA);
             return tA;
@@ -92,14 +95,14 @@ const Database = {
 
 
 const go = new Tclass();
-Database.populateDb();
+const database = new Database();
 go.setTtype("Sales");
 go.setProductName("Cloth");
 go.setAmount(80);
-console.log(Database.save(go));
-console.log(Database.filterExpense());
-console.log(Database.filterSales());
-console.log(Database.cashAtHand());
+console.log(database.save(go));
+console.log(database.filterExpense());
+console.log(database.filterSales());
+console.log(database.cashAtHand());
 
 
 
