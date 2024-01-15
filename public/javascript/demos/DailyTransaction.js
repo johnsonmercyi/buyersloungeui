@@ -23,14 +23,8 @@ const DailyTransaction = {
     return { tranXType: null, product: null, price: 0};
   },
   expenses: function () {
-    const expenses = [];
-    let totalExpenses = 0;
-    for (const transX of this.storage) {
-      if (transX.tranXType === "expense") {
-        expenses.push(transX);
-        totalExpenses += transX.price;
-      }
-    }
+    const expenses = this.storage.filter(el => el.tranXType === "expense");
+    let totalExpenses = expenses.reduce((prevValue, currentValue) => prevValue + currentValue.price, 0);
     return { expenses, totalExpenses };
   },
   sales: function () {
