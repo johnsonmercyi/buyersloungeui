@@ -38,7 +38,6 @@ const DailyTransaction = {
     let totalSales = sales.reduce((prevValue, currentValue) => prevValue + currentValue.price, 0);
     return { sales, totalSales };
   },
-
   cashAtHand: function () {
     let saleAmt = this.sales().totalSales
     let expenseAmt = this.expenses().totalExpenses;

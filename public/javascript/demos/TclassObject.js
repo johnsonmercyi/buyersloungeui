@@ -4,36 +4,8 @@ const TclassObj = {
         return {productName, tType, amount};
     },
 
-    //Getters and Setters
-    setProductName: function(productName){
-        this.productName = productName;
-    },
-
-    getProductName: function(){
-        return this.productName;
-    },
-
-    setTtype: function(tType){
-        this.tType = tType;
-    },
-
-    getTtype: function(){
-        return this.tType;
-    },
-
-    setAmount: function(amount){
-        this.amount = amount;
-    },
-
-    getAmount: function(){
-        return this.amount;
-    },
-   
-    toString: function(){
-        return `[product-name: ${this.productName}, transaction-type: ${this.tType}, amount: ${this.amount}]`;
-    },
-    
     db: [],
+    
     populateDb: function() {
       // this.db.push();
       this.db.push(this.transaction("Rice", "Expenses", 50.00));
