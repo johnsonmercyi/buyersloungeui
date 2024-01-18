@@ -1,75 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./public/css/signup.css">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <div class="container-wrapper">
-            <h3 class="text-center mb-3">Please Sign Up</h3>
-        <div class="row mb-3">
-            <div class="col-12 col-md-6">
-                <input type="text" name="firstname" placeholder="Firstname" class="w-100">
-            </div>
-            <div class="col-12 col-md-6">
-                <input type="text" name="lastname" placeholder="Lastname" class="w-100">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 col-md-6">
-                <input type="text" name="username" placeholder="Username" class="w-100">
-            </div>
-            <div class="col-12 col-md-6">
-                <input type="password" name="password" placeholder="Password" class="w-100">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 col-md-6">
-                <input type="password" name="password" placeholder="Confirm Password" class="w-100">
-            </div>
-            <div class="col-12 col-md-6">
-                <input type="email" name="email" placeholder="Email" class="w-100">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 col-md-6">
-                <select id="gender" name="gender" placeholder="gender" class="w-100">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-            </div>
-            <div class="col-12 col-md-6">
-                <input type="date" name="birthdate" placeholder="Date of Birth" class="w-100">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 col-md-6">
-                <input type="address" name="address" placeholder="Address" class="w-100">
-            </div>
-            <div class="col-12 col-md-6">
-                <input type="nationality" name="nationality" placeholder="nationality" class="w-100">
-            </div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <div class="d-flex">
-            <div class="customer">
-                <input type="radio" name="customer" value="customer" id="customer">
-                <label for="customer">Customer</label>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./public/css/signup.css" />
+    <link rel="stylesheet" href="./public/css/form-fields.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-wrapper">
+        <h3 class="text-center mb-3">Please Sign Up</h3>
+        <form action="" class="form" id="signupForm">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <input
+                class="form-field"
+                type="text"
+                name="firstname"
+                placeholder="Firstname"
+              />
             </div>
-            <div class="seller">
-                <input type="radio" name="seller" value="seller" id="seller">
-                <label for="seller">Seller</label>
+            <div class="col-12 col-md-6">
+              <input
+                class="form-field"
+                type="text"
+                name="zlastname"
+                placeholder="Lastname"
+              />
             </div>
-        </div>
-        <div>
-            <input type="submit" value="Submit">
-        </div>
-        </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <input
+                class="form-field"
+                type="text"
+                name="username"
+                placeholder="Username"
+              />
+            </div>
+            <div class="col-12 col-md-6">
+              <input
+                class="form-field"
+                type="password"
+                name="password"
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <input
+                class="form-field"
+                type="password"
+                name="password"
+                placeholder="Confirm Password"
+              />
+            </div>
+            <div class="col-12 col-md-6">
+              <input
+                class="form-field"
+                type="email"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <select
+                class="form-field"
+                id="gender"
+                name="gender"
+                placeholder="gender"
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6">
+              <input
+                class="form-field"
+                type="date"
+                name="dateOfbirth"
+                placeholder="Date of Birth"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <input
+                class="form-field w-100"
+                type="text"
+                name="address"
+                placeholder="Address"
+              />
+            </div>
+            <div class="col-12 col-md-6">
+              <input
+                class="form-field w-100"
+                type="text"
+                name="nationality"
+                placeholder="nationality"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="radio-btn-wrapper">
+                <div class="radio customer">
+                  <input
+                    class="form-field"
+                    type="radio"
+                    name="userType"
+                    value="customer"
+                    id="customer"
+                  />
+                  <label for="customer">Customer</label>
+                </div>
+
+                <div class="radio seller">
+                  <input
+                    class="form-field"
+                    type="radio"
+                    name="userType"
+                    value="seller"
+                    id="seller"
+                  />
+                  <label for="seller">Seller</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <input type="submit" class="form-field" value="Submit" />
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-</body>
+
+    <!-- Loding the Javascript -->
+    <script type="module" src="./public/javascript/signup.js"></script>
+  </body>
 </html>
