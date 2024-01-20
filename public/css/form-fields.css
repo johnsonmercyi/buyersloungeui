@@ -60,8 +60,3 @@ select.form-field {
   background-color: #005baa;
 }
 
-@media (min-width: 576px) {
-  select.form-field {
-    height: -webkit-fill-available;
-  }
-}
