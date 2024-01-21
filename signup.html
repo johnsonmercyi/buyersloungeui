@@ -21,18 +21,23 @@
         <form action="" class="form" id="signupForm">
           <div class="row">
             <div class="col-12 col-md-6">
-              <input
-                class="form-field"
-                type="text"
-                name="firstname"
-                placeholder="Firstname"
-              />
+              <div class="form-field-wrapper">
+                <input
+                  id="firstname"
+                  class="form-field"
+                  type="text"
+                  name="firstname"
+                  placeholder="Firstname"
+                />
+                <span class="error-message" style="color: red"></span>
+              </div>
             </div>
             <div class="col-12 col-md-6">
               <input
+                id="lastname"
                 class="form-field"
                 type="text"
-                name="zlastname"
+                name="lastname"
                 placeholder="Lastname"
               />
             </div>
@@ -40,6 +45,7 @@
           <div class="row">
             <div class="col-12 col-md-6">
               <input
+                id="username"
                 class="form-field"
                 type="text"
                 name="username"
@@ -48,6 +54,7 @@
             </div>
             <div class="col-12 col-md-6">
               <input
+                id="password"
                 class="form-field"
                 type="password"
                 name="password"
@@ -58,14 +65,16 @@
           <div class="row">
             <div class="col-12 col-md-6">
               <input
+                id="confirmPassword"
                 class="form-field"
                 type="password"
-                name="password"
+                name="confirmPassword"
                 placeholder="Confirm Password"
               />
             </div>
             <div class="col-12 col-md-6">
               <input
+                id="email"
                 class="form-field"
                 type="email"
                 name="email"
@@ -77,6 +86,8 @@
           <div class="row">
             <div class="col-12 col-md-6">
               <select
+
+                id="gender"
                 class="form-field"
                 id="gender"
                 name="gender"
@@ -88,9 +99,10 @@
             </div>
             <div class="col-12 col-sm-12 col-md-6">
               <input
+                id="dateOfBirth"
                 class="form-field"
                 type="date"
-                name="dateOfbirth"
+                name="dateOfBirth"
                 placeholder="Date of Birth"
               />
             </div>
@@ -99,6 +111,7 @@
           <div class="row">
             <div class="col-12 col-md-6">
               <input
+                id="address"
                 class="form-field w-100"
                 type="text"
                 name="address"
@@ -107,6 +120,7 @@
             </div>
             <div class="col-12 col-md-6">
               <input
+                id="nationality"
                 class="form-field w-100"
                 type="text"
                 name="nationality"
@@ -120,6 +134,7 @@
               <div class="radio-btn-wrapper">
                 <div class="radio customer">
                   <input
+                    checked
                     class="form-field"
                     type="radio"
                     name="userType"
@@ -145,7 +160,7 @@
 
           <div class="row">
             <div class="col-12 col-md-12">
-              <input type="submit" class="form-field" value="Submit" />
+              <input type="submit" id="submit" class="form-field" value="Submit" />
             </div>
           </div>
         </form>

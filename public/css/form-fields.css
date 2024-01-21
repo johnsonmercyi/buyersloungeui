@@ -18,6 +18,12 @@ body,
   padding: 0.5rem;
 }
 
+.form .form-field-wrapper {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
 .form input[type="text"].form-field,
 .form input[type="password"].form-field,
 .form input[type="email"].form-field,
