@@ -21,7 +21,12 @@ body,
 .form .form-field-wrapper {
   width: 100%;
   height: auto;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .form input[type="text"].form-field,

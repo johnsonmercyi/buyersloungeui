@@ -1,4 +1,4 @@
-import { validateFields } from './util/util.mjs';
+import { isFormFieldsFilled, makeRequest, validateFields } from './util/util.mjs';
 
 document.addEventListener("DOMContentLoaded", function (event) {
   const firstnameField = document.querySelector(".form-field#firstname");
@@ -13,10 +13,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const nationalityField = document.querySelector(".form-field#nationality");
   const customerRadio = document.querySelector(".form-field#customer");
   const sellerRadio = document.querySelector(".form-field#seller");
+  const errorNodes = document.querySelectorAll(".error-message");
 
+  // console.log(errorNodes);
   const submitBtn = document.querySelector(".form-field#submit");
 
-  submitBtn.addEventListener('click', (event) => {
+  submitBtn.addEventListener('click', async (event) => {
     event.preventDefault();
 
     const validateReport = validateFields(
@@ -31,28 +33,46 @@ document.addEventListener("DOMContentLoaded", function (event) {
       addressField,
       nationalityField
     );
+    
+    if (isFormFieldsFilled(errorNodes, validateReport)) {
+      let userType = "n/a";
+      if (customerRadio.checked) {
+        userType = String(customerRadio.value).toLowerCase();
+      } else if (sellerRadio.checked) {
+        userType = String(sellerRadio.value).toLowerCase();
+      }
 
-    console.log(validateReport);
+      const payload = {
+        firstname: firstnameField.value,
+        lastname: lastnameField.value,
+        username: usernameField.value,
+        password: passwordField.value,
+        email: emailField.value,
+        gender: genderSelect.value,
+        dob: dobField.value,
+        address: addressField.value,
+        nationality: nationalityField.value,
+      }
 
-    // let userType = "n/a";
-    // if (customerRadio.checked) {
-    //   userType = customerRadio.value;
-    // } else if (sellerRadio.checked) {
-    //   userType = sellerRadio.value;
-    // }
-
-    // console.log({
-    //   firstname: firstnameField.value,
-    //   lastname: lastnameField.value,
-    //   username: usernameField.value,
-    //   password: passwordField.value,
-    //   confirmPassword: confirmPasswordField.value,
-    //   email: emailField.value,
-    //   gender: genderSelect.value, // Doubtful yet!
-    //   dob: dobField.value,
-    //   address: addressField.value,
-    //   nationality: nationalityField.value,
-    //   userType: userType,
-    // });
+      const url = `${
+        userType === "customer" ? 
+        "http://localhost:8080/api/customers" : 
+        "http://localhost:8080/api/sellers"
+      }`
+      
+      try {
+        // Make Http Request!
+        const response = await makeRequest(url, "POST", payload);
+        const data = await response.json();
+  
+        if (!data.error) {
+          console.log(data);
+        } else {
+          // Handle error response here...
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
   });
 });

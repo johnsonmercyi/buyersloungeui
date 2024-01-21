@@ -45,6 +45,21 @@ function validateFields(...fields) {
   });
 }
 
+
+function isFormFieldsFilled(errorNodes, validateReport) {
+  let valid = 0;
+
+  for (const report of validateReport) {
+    errorNodes[report.index].innerHTML = report.errorMessage;
+    if (!report.error) {
+      valid++;
+    }
+  }
+
+  return valid === validateReport.length;
+}
+
+
 async function makeRequest(url, method, data) {
   return await fetch(url, {
     method: method,
@@ -57,5 +72,6 @@ async function makeRequest(url, method, data) {
 
 export {
   validateFields,
-  makeRequest
+  makeRequest,
+  isFormFieldsFilled
 }
