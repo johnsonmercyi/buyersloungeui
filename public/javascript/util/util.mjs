@@ -29,6 +29,18 @@ function validateFields(...fields) {
             };
           }
         }
+        //check if confirmpassword matches password
+        let password = document.querySelector(".form-field#password");
+        if(field.getAttribute("name") === "confirmPassword"){
+          if (field.value != password){
+            return{
+              field: field.getAttribute("name"),
+              error: true,
+              errorMessage: `${field.getAttribute("name")} must match password`,
+              index: fields.indexOf(field)
+            };
+          }
+        }
 
         // Yeaa! Everything is okay.
         return {

@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const customerRadio = document.querySelector(".form-field#customer");
   const sellerRadio = document.querySelector(".form-field#seller");
   const errorNodes = document.querySelectorAll(".error-message");
+  const notify = document.querySelector(".notify");
 
   // console.log(errorNodes);
   const submitBtn = document.querySelector(".form-field#submit");
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       usernameField, 
       passwordField, 
       confirmPasswordField,
-      email,
+      emailField,
       genderSelect,
       dobField,
       addressField,
@@ -67,12 +68,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
   
         if (!data.error) {
           console.log(data);
+          notify.innerHTML = "Your Submission was successful";
+            // Get the entered username
+            let username = data.username;
+            //waiting for 10 seconds before redirecting to the login page
+            setTimeout(() => {
+                // Redirect to the login page with the username as a parameter
+                window.location.href = "login.html?username=" + encodeURIComponent(username);
+            }, 10000);
         } else {
           // Handle error response here...
         }
       } catch (error) {
         console.error(error.message);
       }
+     // console.log(payload);
+      
     }
   });
 });
