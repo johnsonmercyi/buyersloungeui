@@ -1,4 +1,4 @@
-import { isFormFieldsFilled, makeRequest, validateFields } from './util/util.mjs';
+import { displayStatusMessage, isFormFieldsFilled, makeRequest, validateFields } from './util/util.mjs';
 
 document.addEventListener("DOMContentLoaded", function (event) {
   const firstnameField = document.querySelector(".form-field#firstname");
@@ -61,27 +61,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
         "http://localhost:8080/api/sellers"
       }`
       
-      try {
+      // try {
         // Make Http Request!
         const response = await makeRequest(url, "POST", payload);
         const data = await response.json();
   
         if (!data.error) {
           console.log(data);
-          notify.innerHTML = "Your Submission was successful";
+          displayStatusMessage(notify, "Your Submission was successful!");
             // Get the entered username
-            let username = data.username;
-            //waiting for 10 seconds before redirecting to the login page
+            let username = data.user.username;
+            localStorage.setItem("username", username);
+            //waiting for 5 seconds before redirecting to the login page
             setTimeout(() => {
-                // Redirect to the login page with the username as a parameter
-                window.location.href = "login.html?username=" + encodeURIComponent(username);
-            }, 10000);
+                // Redirect to the login page with the username as a parameter;
+              window.location.href = `login.html`;
+            }, 5000);
         } else {
           // Handle error response here...
+          displayStatusMessage(notify, data.message, {color: "red"});
         }
-      } catch (error) {
-        console.error(error.message);
-      }
+      // } catch (error) {
+      //   console.error(error.message);
+      // }
      // console.log(payload);
       
     }

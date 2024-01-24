@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
   const submitButton = document.querySelector("#loginButton");
   const errorNodes = document.querySelectorAll(".error-message");
 
+  // In case this user just signed up!--------------------
+  const signedUpUsername = localStorage.getItem("username");
+  if (signedUpUsername) {
+    usernameField.value = signedUpUsername;
+    localStorage.removeItem("username");
+  }
+  // -----------------------------------------------------
+
   submitButton && submitButton.addEventListener("click", (event) => {
     event.preventDefault();
     const validateReport = validateFields(usernameField, passwordField);

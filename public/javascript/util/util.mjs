@@ -19,7 +19,8 @@ function validateFields(...fields) {
         // When the field is filled
 
         // Checks if the password is contains up to 8 characters
-        if (field.getAttribute("name") === "password") {
+        if (field.type === "password") {
+
           if (field.value.length < 8) {
             return {
               field: field.getAttribute("name"),
@@ -28,17 +29,19 @@ function validateFields(...fields) {
               index: fields.indexOf(field)
             };
           }
-        }
-        //check if confirmpassword matches password
-        let password = document.querySelector(".form-field#password");
-        if(field.getAttribute("name") === "confirmPassword"){
-          if (field.value != password){
-            return{
-              field: field.getAttribute("name"),
-              error: true,
-              errorMessage: `${field.getAttribute("name")} must match password`,
-              index: fields.indexOf(field)
-            };
+          
+          if(field.getAttribute("name") === "confirmPassword"){
+            //check if confirmpassword matches password
+            let password = document.querySelector(".form-field#password");
+
+            if (field.value != password.value){
+              return{
+                field: field.getAttribute("name"),
+                error: true,
+                errorMessage: `${field.getAttribute("name")} must match password`,
+                index: fields.indexOf(field)
+              };
+            }
           }
         }
 
@@ -82,8 +85,16 @@ async function makeRequest(url, method, data) {
   });
 }
 
+function displayStatusMessage(notifyNode, statusMessage, styleOptions={}) {
+  notifyNode.innerHTML = statusMessage;
+  Object.keys(styleOptions).forEach(key => {
+    notifyNode.style[key] = styleOptions[key];
+  });
+}
+
 export {
   validateFields,
   makeRequest,
-  isFormFieldsFilled
+  isFormFieldsFilled,
+  displayStatusMessage
 }
